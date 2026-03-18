@@ -67,6 +67,7 @@
 # lista.imprimir() 
 
 
+
 class Dado:
     def __init__(self, valor):
         self.valor = valor
@@ -95,12 +96,23 @@ class Elos:
     def imprimir(self):
             atual = self.head
             while atual:
-                print(atual.valor, end=" ->")
+                if atual.prev:
+                    atual_prev = atual.prev.valor
+                else: 
+                    atual_prev = None
+                if atual.next:
+                    atual_next = atual.next.valor
+                else: 
+                    atual_next = None                    
+
+                print(atual_prev, atual.valor, atual_next)
                 atual = atual.next
-            print("None")
+
                 
                 
 lista = Elos()
 lista.insert_end(10)
 lista.insert_end(20)
 lista.imprimir()
+        
+                
