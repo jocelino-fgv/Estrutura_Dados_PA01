@@ -46,6 +46,30 @@ class Elos:
         atual.next = new_node
         new_node.prev = atual
  
+    def buscar_viz(self):
+        nome = "Pedro"
+        sv = "sem vizinho"
+
+        atual = self.head
+        while atual:
+            if atual.valor != nome:
+                atual = atual.next
+                #if atual.next is None:
+
+            else:
+                if atual.prev:
+                    atual_prev = atual.prev.valor
+                else:
+                    atual_prev = sv
+                if atual.next:
+                    atual_next = atual.next.valor
+                else:
+                    atual_next = sv
+                print(f"Os vizinhos de {atual.valor} são: {atual_prev} à esquerda e à direita {atual_next}")
+                return
+        print("Nome não localizado")
+
+
     def imprimir(self):
             atual = self.head
             while atual:
@@ -64,8 +88,11 @@ class Elos:
                 
                 
 lista = Elos()
-lista.insert_end(10)
-lista.insert_end(20)
-lista.imprimir()
+lista.insert_end("João")
+lista.insert_end("Pedro")
+lista.insert_end("Maria")
+lista.insert_end("Carlos")
+lista.buscar_viz()
+#lista.imprimir()
         
                 
