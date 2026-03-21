@@ -41,16 +41,6 @@ class Elos:
                 return
         print("Nome não localizado")
 
-    # def insert_begin(self, valor):
-    #     new_node = Node(valor)
-    #     new_node.next = self.head
-    #     self.head = new_node
-    #
-    # def insert_end(self, valor):
-    #     new_node = Node(valor)
-    #     if self.head is None:
-    #         self.head = new_node
-    #         return
 
     def imprimir(self):
             atual = self.head
@@ -67,15 +57,52 @@ class Elos:
                 print(atual_prev, atual.valor, atual_next)
                 atual = atual.next
 
+class Hist:
+    def __init__(self):
+        self.head = None
 
+    def insert_begin(self, valor):
+        new_node = Dado(valor)
+        new_node.next = self.head
+        self.head = new_node
+
+    # def insert_end(self, valor):
+    #     new_node = Dado(valor)
+    #     if self.head is None:
+    #         self.head = new_node
+    #         return
+    #     atual = self.head
+    #     while atual.next:
+    #         atual = atual.next
+    #     atual.next = new_node
+    #     new_node.prev = atual
+
+    def imprimir(self):
+        atual = self.head
+        print(f"O histório pesquisa de moradores em ordem inversa é: ")
+        while atual:
+            if atual.prev:
+                atual_prev = atual.prev.valor
+            else:
+                atual_prev = None
+            if atual.next:
+                atual_next = atual.next.valor
+            else:
+                atual_next = None
+
+            print(f"{atual.valor}")
+            atual = atual.next
 
 lista = Elos()
+lista_hist = Hist()
 # lista.insert_end("João")
 # lista.insert_end("Pedro")
 # lista.insert_end("Maria")
 # lista.insert_end("Carlos")
 lista.buscar_viz()
 #lista.imprimir()
+
+
 
 def mostrar_menu():
     print("\n--- MENU ---")
@@ -91,11 +118,13 @@ while True:
     if opcao == '1':
         nome_morador = input("Cadastrar morador, informe o nome: ")
         lista.insert_end(nome_morador)
+
     elif opcao == '2':
         nome = input("Informe o nome do morador ")
         lista.buscar_viz()
+        lista_hist.insert_begin(nome)
     elif opcao == '3':
-        hist_busca_moradores = input("Informe o nome do morador")
+        lista_hist.imprimir()
     elif opcao == '4':
         print("Encerrando, até breve.")
         break
